@@ -38,7 +38,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ users, onSubmit }) => {
       return;
     }
 
-    const selectedUser = users.find(us => us.id === Number(userId));
+    const selectedUser = users.find(user => user.id === Number(userId));
 
     if (!selectedUser) {
       return;
@@ -63,6 +63,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ users, onSubmit }) => {
           type="text"
           data-cy="titleInput"
           value={title}
+          id="todo-title"
           placeholder="Enter a title"
           onChange={event => {
             setTitle(event.target.value);

@@ -9,7 +9,7 @@ import { useState } from 'react';
 export const App = () => {
   const preparedTodos = todosFromServer.map(todo => {
     const foundAuthor = usersFromServer.find(
-      us => us.id === todo.userId,
+      user => user.id === todo.userId,
     ) as User;
 
     return {
