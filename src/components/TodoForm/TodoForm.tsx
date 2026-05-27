@@ -58,10 +58,12 @@ export const TodoForm: React.FC<TodoFormProps> = ({ users, onSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="field">
+        <label htmlFor="todo-title">Title: </label>
         <input
           type="text"
           data-cy="titleInput"
           value={title}
+          placeholder="Enter a title"
           onChange={event => {
             setTitle(event.target.value);
             setTitleError('');
@@ -71,9 +73,11 @@ export const TodoForm: React.FC<TodoFormProps> = ({ users, onSubmit }) => {
       </div>
 
       <div className="field">
+        <label htmlFor="todo-user">User: </label>
         <select
           data-cy="userSelect"
           value={userId}
+          id="todo-user"
           onChange={event => {
             setUserId(event.target.value);
             setUserError('');
@@ -90,7 +94,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ users, onSubmit }) => {
           ))}
         </select>
 
-        {titleError && <span className="error">{userError}</span>}
+        {userError && <span className="error">{userError}</span>}
       </div>
 
       <button type="submit" data-cy="submitButton">

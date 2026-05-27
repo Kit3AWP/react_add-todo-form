@@ -7,7 +7,7 @@ import { TodoForm } from './components/TodoForm/TodoForm';
 import { useState } from 'react';
 
 export const App = () => {
-  const prepearedTodos = todosFromServer.map(todo => {
+  const preparedTodos = todosFromServer.map(todo => {
     const foundAuthor = usersFromServer.find(
       us => us.id === todo.userId,
     ) as User;
@@ -17,7 +17,7 @@ export const App = () => {
       user: foundAuthor,
     };
   });
-  const [todos, setTodos] = useState(prepearedTodos);
+  const [todos, setTodos] = useState(preparedTodos);
 
   const addTodo = (newTodo: Omit<Todo, 'id'>) => {
     const ids = todos.map(todo => todo.id);
