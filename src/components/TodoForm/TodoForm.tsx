@@ -15,7 +15,7 @@ interface TodoFormProps {
 
 export const TodoForm: React.FC<TodoFormProps> = ({ users, onSubmit }) => {
   const [title, setTitle] = useState('');
-  const [userId, setUserId] = useState('');
+  const [userId, setUserId] = useState('0');
   const [titleError, setTitleError] = useState('');
   const [userError, setUserError] = useState('');
 
@@ -84,7 +84,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ users, onSubmit }) => {
             setUserError('');
           }}
         >
-          <option value="0" disabled>
+          <option value="0" disabled hidden>
             Choose a user
           </option>
 
