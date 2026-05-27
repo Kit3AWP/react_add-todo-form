@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Todo } from '../TodoList';
 
 export interface User {
   id: number;
@@ -9,9 +10,10 @@ export interface User {
 
 interface TodoFormProps {
   users: User[];
+  onSubmit: (todo: Omit<Todo, 'id'>) => void;
 }
 
-export const TodoForm: React.FC<TodoFormProps> = ({ users }) => {
+export const TodoForm: React.FC<TodoFormProps> = ({ users, onSubmit }) => {
   const [title, setTitle] = useState('');
   const [userId, setUserId] = useState('');
   const [titleError, setTitleError] = useState('');
@@ -27,7 +29,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ users }) => {
       hasErrors = true;
     }
 
-    if (userId === '0') {
+    if (userId === '') {
       setUserError('Please choose a user');
       hasErrors = true;
     }
@@ -35,6 +37,22 @@ export const TodoForm: React.FC<TodoFormProps> = ({ users }) => {
     if (hasErrors) {
       return;
     }
+
+    const selectedUser = users.find(us => us.id === Number(userId));
+
+    if (!selectedUser) {
+      return;
+    }
+
+    onSubmit({
+      title: title.trim(),
+      userId: Number(userId),
+      completed: false,
+      user: selectedUser,
+    });
+
+    setTitle('');
+    setUserId('0');
   };
 
   return (

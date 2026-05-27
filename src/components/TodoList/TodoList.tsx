@@ -1,3 +1,5 @@
+import { TodoInfo } from '../TodoInfo';
+
 export interface User {
   id: number;
   name: string;
@@ -20,10 +22,7 @@ export const TodoList: React.FC<TodoListProps> = ({ todos }) => {
   return (
     <section className="TodoList">
       {todos.map(todo => (
-        <article data-id={todo.id} key={todo.id}>
-          <h2>{todo.title}</h2>
-          <a href={todo.user.email}>{todo.user.name}</a>
-        </article>
+        <TodoInfo key={todo.id} todo={todo} />
       ))}
     </section>
   );
